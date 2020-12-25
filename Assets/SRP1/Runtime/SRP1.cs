@@ -81,7 +81,7 @@ public class SRP1 : RenderPipeline
         }
         ShaderTagId shaderTagId = new ShaderTagId("ForwardBase");
 
-        var drawSettings = new DrawingSettings(shaderTagId,sortingSetting);
+        var drawSettings = new DrawingSettings(shaderTagId, sortingSetting);
         drawSettings.SetShaderPassName(1, new ShaderTagId("PrepassBase"));
         drawSettings.SetShaderPassName(2, new ShaderTagId("Always"));
         drawSettings.SetShaderPassName(3, new ShaderTagId("Vertex"));

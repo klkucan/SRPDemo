@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Standard 3
+  m_Name: Standard 8
   m_Shader: {fileID: 4800000, guid: 357f0321d3d67cd47abc62f886047787, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -76,6 +76,6 @@ Material:
     m_Colors:
     - Color_AEAEE835: {r: 0.6037736, g: 0.042719822, b: 0.042719822, a: 0}
     - _Color: {r: 0.8490566, g: 0.11614456, b: 0.47948426, a: 1}
-    - _Color1: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+    - _Color1: {r: 0.9283243, g: 0.9339623, b: 0.022027409, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

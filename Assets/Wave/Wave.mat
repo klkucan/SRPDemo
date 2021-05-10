@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Standard 3
-  m_Shader: {fileID: 4800000, guid: 357f0321d3d67cd47abc62f886047787, type: 3}
+  m_Name: Wave
+  m_Shader: {fileID: 4800000, guid: aa4c3985a7039e04aaee9b28a68375b1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 376f54c036d6273498ed1c88827e68ec, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -74,8 +74,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - Color_AEAEE835: {r: 0.6037736, g: 0.042719822, b: 0.042719822, a: 0}
-    - _Color: {r: 0.8490566, g: 0.11614456, b: 0.47948426, a: 1}
-    - _Color1: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Diffuse: {r: 0, g: 0.8768115, b: 0.9622642, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

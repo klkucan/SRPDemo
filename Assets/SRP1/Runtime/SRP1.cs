@@ -1,20 +1,22 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.Rendering;
-
 using Conditional = System.Diagnostics.ConditionalAttribute;
 
 public class SRP1 : RenderPipeline
 {
     private RenderPipelineAsset _asset;
-    CommandBuffer commandbuffer = new CommandBuffer() { name = "SRP1Command" };
+    CommandBuffer commandbuffer = new CommandBuffer() {name = "SRP1Command"};
 
     SortingSettings sortingSetting;
     FilteringSettings filterSetting;
     Material errorMaterial;
+
     public SRP1(RenderPipelineAsset asset)
     {
         _asset = asset;
     }
+
     protected override void Render(ScriptableRenderContext context, Camera[] cameras)
     {
         GraphicsSettings.useScriptableRenderPipelineBatching = true;
@@ -35,7 +37,7 @@ public class SRP1 : RenderPipeline
                     flag <= CameraClearFlags.Depth,
                     flag <= CameraClearFlags.Color,
                     new Color(0.1f, 0.4f, 0.6f)
-                    );
+                );
                 context.ExecuteCommandBuffer(commandbuffer);
                 commandbuffer.Clear();
             }
@@ -60,14 +62,17 @@ public class SRP1 : RenderPipeline
                 cullingResults = context.Cull(ref p);
                 context.DrawRenderers(cullingResults, ref drawingSetting, ref filterSetting);
             }
+
             DrawDefaultPipeline(context, camera, cullingResults);
             if (camera.clearFlags == CameraClearFlags.Skybox && RenderSettings.skybox != null)
             {
                 context.DrawSkybox(camera);
             }
+
             context.Submit();
         }
     }
+
     [Conditional("DEVELOPMENT_BUILD"), Conditional("UNITY_EDITOR")]
     void DrawDefaultPipeline(ScriptableRenderContext context, Camera camera, CullingResults cullingResults)
     {
@@ -79,6 +84,7 @@ public class SRP1 : RenderPipeline
                 hideFlags = HideFlags.HideAndDontSave
             };
         }
+
         ShaderTagId shaderTagId = new ShaderTagId("ForwardBase");
 
         var drawSettings = new DrawingSettings(shaderTagId, sortingSetting);

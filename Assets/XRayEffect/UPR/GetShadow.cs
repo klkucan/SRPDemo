@@ -14,8 +14,9 @@ public class GetShadow : ScriptableRendererFeature
     class GetShadowPass : ScriptableRenderPass
     {
         private RenderTargetIdentifier m_cameraDepthTexture;
+        private RenderTargetHandle _renderTargetHandle;
 
-
+        private RenderTextureDescriptor _renderTextureDescriptor;
         // This method is called before executing the render pass.
         // It can be used to configure render targets and their clear state. Also to create temporary render target textures.
         // When empty this render pass will render to the active camera render target.
@@ -23,7 +24,12 @@ public class GetShadow : ScriptableRendererFeature
         // The render pipeline will ensure target setup and clearing happens in a performant manner.
         public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
         {
-
+            _renderTextureDescriptor = renderingData.cameraData.cameraTargetDescriptor;
+            _renderTextureDescriptor.colorFormat = RenderTextureFormat.ARGB32;
+            _renderTextureDescriptor.depthBufferBits = 24;
+            cmd.GetTemporaryRT(_renderTargetHandle.id,_renderTextureDescriptor,FilterMode.Point);
+            ConfigureTarget(_renderTargetHandle.Identifier());
+            ConfigureClear(ClearFlag.All,Color.white);
         }
 
         // Here you can implement the rendering logic.
@@ -35,6 +41,9 @@ public class GetShadow : ScriptableRendererFeature
             CommandBuffer cmd = CommandBufferPool.Get();
             using (new ProfilingScope(cmd, profilingSampler))
             {
+                context.ExecuteCommandBuffer(cmd);
+                cmd.Clear();
+                
                 cmd.Blit(m_cameraDepthTexture, renderingData.cameraData.targetTexture);
             }
             context.ExecuteCommandBuffer(cmd);
@@ -49,6 +58,7 @@ public class GetShadow : ScriptableRendererFeature
 
         public void SetUp(RenderTargetIdentifier destination)
         {
+            _renderTargetHandle.Init("Get_Shadow");
             profilingSampler = new ProfilingSampler(nameof(GetShadowPass));
             m_cameraDepthTexture = destination;
         }

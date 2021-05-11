@@ -13,6 +13,8 @@ public class DepthNormalsFeature : ScriptableRendererFeature
         private Material depthNormalsMaterial = null;
         private FilteringSettings m_FilteringSettings;
         string m_ProfilerTag = "DepthNormals Prepass";
+        public RenderPassEvent Event = RenderPassEvent.AfterRenderingOpaques;
+
         ShaderTagId m_ShaderTagId = new ShaderTagId("DepthOnly");
 
         public DepthNormalsPass(RenderQueueRange renderQueueRange, LayerMask layerMask, Material material)
@@ -68,10 +70,9 @@ public class DepthNormalsFeature : ScriptableRendererFeature
                 drawSettings.overrideMaterial = depthNormalsMaterial;
 
 
-                context.DrawRenderers(renderingData.cullResults, ref drawSettings,
-                    ref m_FilteringSettings);
+                // context.DrawRenderers(renderingData.cullResults, ref drawSettings, ref m_FilteringSettings);
 
-                cmd.SetGlobalTexture("_CameraDepthNormalsTexture", depthAttachmentHandle.id);
+                //cmd.SetGlobalTexture(renderTargetHandleID, depthAttachmentHandle.id);
             }
 
             context.ExecuteCommandBuffer(cmd);
@@ -92,13 +93,13 @@ public class DepthNormalsFeature : ScriptableRendererFeature
     DepthNormalsPass depthNormalsPass;
     RenderTargetHandle depthNormalsTexture;
     Material depthNormalsMaterial;
-
+    static string renderTargetHandleID = "A";//"_CameraDepthNormalsTexture";
     public override void Create()
     {
         depthNormalsMaterial = CoreUtils.CreateEngineMaterial("Hidden/Internal-DepthNormalsTexture");
         depthNormalsPass = new DepthNormalsPass(RenderQueueRange.opaque, -1, depthNormalsMaterial);
-        depthNormalsPass.renderPassEvent = RenderPassEvent.AfterRenderingPrePasses;
-        depthNormalsTexture.Init("_CameraDepthNormalsTexture");
+        // depthNormalsPass.renderPassEvent = RenderPassEvent.AfterRenderingPrePasses;
+        depthNormalsTexture.Init(renderTargetHandleID);
     }
 
     // Here you can inject one or multiple render passes in the renderer.

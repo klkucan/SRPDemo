@@ -28,6 +28,9 @@ public class GetShadow : ScriptableRendererFeature
             _renderTextureDescriptor.colorFormat = RenderTextureFormat.ARGB32;
             _renderTextureDescriptor.depthBufferBits = 24;
             cmd.GetTemporaryRT(_renderTargetHandle.id,_renderTextureDescriptor,FilterMode.Point);
+            // cmd.GetTemporaryRT(_renderTargetHandle.id, 1280, 720);
+            // cmd.GetTemporaryRT(_renderTargetHandle.id, 1280, 720, 16);
+
             ConfigureTarget(_renderTargetHandle.Identifier());
             ConfigureClear(ClearFlag.All,Color.white);
         }
@@ -39,7 +42,7 @@ public class GetShadow : ScriptableRendererFeature
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             CommandBuffer cmd = CommandBufferPool.Get();
-            using (new ProfilingScope(cmd, profilingSampler))
+            using (new ProfilingScope(cmd, new ProfilingSampler("TSAI")))
             {
                 context.ExecuteCommandBuffer(cmd);
                 cmd.Clear();

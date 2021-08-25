@@ -65,14 +65,10 @@ public class DepthNormalsFeature : ScriptableRendererFeature
                 Camera camera = cameraData.camera;
                 if (cameraData.isStereoEnabled)
                     context.StartMultiEye(camera);
-
-
+                
                 drawSettings.overrideMaterial = depthNormalsMaterial;
-
-
-                // context.DrawRenderers(renderingData.cullResults, ref drawSettings, ref m_FilteringSettings);
-
-                //cmd.SetGlobalTexture(renderTargetHandleID, depthAttachmentHandle.id);
+                context.DrawRenderers(renderingData.cullResults, ref drawSettings, ref m_FilteringSettings);
+                cmd.SetGlobalTexture(renderTargetHandleID, depthAttachmentHandle.id);
             }
 
             context.ExecuteCommandBuffer(cmd);
@@ -93,7 +89,8 @@ public class DepthNormalsFeature : ScriptableRendererFeature
     DepthNormalsPass depthNormalsPass;
     RenderTargetHandle depthNormalsTexture;
     Material depthNormalsMaterial;
-    static string renderTargetHandleID = "A";//"_CameraDepthNormalsTexture";
+    static string renderTargetHandleID = "A"; //"_CameraDepthNormalsTexture";
+
     public override void Create()
     {
         depthNormalsMaterial = CoreUtils.CreateEngineMaterial("Hidden/Internal-DepthNormalsTexture");

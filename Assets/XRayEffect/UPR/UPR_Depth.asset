@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7807596606950056749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a171bbe0d8395499b00cabc764ad03, type: 3}
+  m_Name: NewCopyDepthToRT
+  m_EditorClassIdentifier: 
+  m_Active: 1
 --- !u!114 &-5095195627725830018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21,7 +34,7 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 0
       PassNames: []
---- !u!114 &-2602452473191937889
+--- !u!114 &-2664862883322209122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31,11 +44,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa61b92da436a93429adec207ae78d16, type: 3}
-  m_Name: NewCustomRenderPassFeature
+  m_Name: CustomRenderPassFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   _settings:
-    passTag: NewCustomRenderPassFeature
+    passTag: CustomRenderPassFeature
     Event: 250
     filterSettings:
       RenderQueueType: 0
@@ -169,13 +182,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
-  m_Name: UPR_XRayEffect_Renderer
+  m_Name: UPR_Depth
   m_EditorClassIdentifier: 
   m_RendererFeatures:
-  - {fileID: -2602452473191937889}
-  - {fileID: 2518952658024186823}
-  - {fileID: 6706033611350710091}
-  m_RendererFeatureMap: 9fc88e96433be2dbc7c38eb3181ef5224b9763180a9e105d
+  - {fileID: -2664862883322209122}
+  - {fileID: -7807596606950056749}
+  m_RendererFeatureMap: 9edc74a0538104dbd35c329d40d8a593
   postProcessData: {fileID: 0}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -188,10 +200,10 @@ MonoBehaviour:
     materialErrorPS: {fileID: 4800000, guid: 5fd9a8feb75a4b5894c241777f519d4e, type: 3}
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 0
   m_TransparentLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_DefaultStencilState:
     overrideStencilState: 0
     stencilReference: 0
@@ -202,45 +214,6 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 0
   m_RenderingMode: 0
   m_AccurateGbufferNormals: 0
---- !u!114 &2518952658024186823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: back
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  settings:
-    passTag: back
-    Event: 300
-    filterSettings:
-      RenderQueueType: 0
-      LayerMask:
-        serializedVersion: 2
-        m_Bits: 128
-      PassNames: []
-    overrideMaterial: {fileID: 2100000, guid: 8d017888b75282d41b508bef1dd544ce, type: 2}
-    overrideMaterialPassIndex: 0
-    overrideDepthState: 1
-    depthCompareFunction: 5
-    enableWrite: 0
-    stencilSettings:
-      overrideStencilState: 0
-      stencilReference: 0
-      stencilCompareFunction: 8
-      passOperation: 0
-      failOperation: 0
-      zFailOperation: 0
-    cameraSettings:
-      overrideCamera: 0
-      restoreCamera: 1
-      offset: {x: 0, y: 0, z: 0, w: 0}
-      cameraFieldOfView: 60
 --- !u!114 &5775329833787850941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,42 +227,3 @@ MonoBehaviour:
   m_Name: NewDepthNormalsFeature
   m_EditorClassIdentifier: 
   m_Active: 1
---- !u!114 &6706033611350710091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: front
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  settings:
-    passTag: front
-    Event: 300
-    filterSettings:
-      RenderQueueType: 0
-      LayerMask:
-        serializedVersion: 2
-        m_Bits: 128
-      PassNames: []
-    overrideMaterial: {fileID: 0}
-    overrideMaterialPassIndex: 0
-    overrideDepthState: 0
-    depthCompareFunction: 4
-    enableWrite: 1
-    stencilSettings:
-      overrideStencilState: 0
-      stencilReference: 0
-      stencilCompareFunction: 8
-      passOperation: 0
-      failOperation: 0
-      zFailOperation: 0
-    cameraSettings:
-      overrideCamera: 0
-      restoreCamera: 1
-      offset: {x: 0, y: 0, z: 0, w: 0}
-      cameraFieldOfView: 60

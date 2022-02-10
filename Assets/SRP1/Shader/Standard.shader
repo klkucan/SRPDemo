@@ -4,11 +4,11 @@
 		_MainTex("Main Tex", 2D) = "white" {}
 	}
 		SubShader{
-			//Tags { "RenderType" = "Opaque" "IgnoreProjector" = "True" "RenderPipeline" = "UniversalPipeline"}
+			Tags { "RenderType" = "Opaque" "IgnoreProjector" = "True" "RenderPipeline" = "UniversalPipeline"}
 			//Tags { "RenderType" = "Opaque" }
 
 			// LightMode 的设置导致了URP无法使用这个shader
-			Tags { "RenderType" = "Opaque" "LightMode" = "SRP1Shader"}
+			//Tags { "RenderType" = "Opaque" "LightMode" = "SRP1Shader"}
 			Pass{
 				
 			
